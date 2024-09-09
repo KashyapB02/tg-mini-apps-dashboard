@@ -1,0 +1,145 @@
+.formControlGroup {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.formControlLabel {
+  font-size: 0.9375rem;
+}
+
+.formControlLabel::after {
+  display: inline-block;
+  content: "*";
+  color: #df2e38;
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.formControl {
+  padding: 0.425rem 1rem;
+  border: 1px solid var(--color-accent-dark);
+  border-radius: 0.25rem;
+  background: rgb(0, 128, 72, 0.125);
+  color: #ffffff;
+  width: 100%;
+  margin-top: 0.2rem;
+  letter-spacing: 0.03em;
+}
+
+.formControl::-webkit-input-placeholder {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.formControl::-moz-placeholder {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.formControl:-ms-input-placeholder {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.formControl::-ms-input-placeholder {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.formControl::placeholder {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.formControlError {
+  border-color: #df2e38;
+  background: rgb(223, 46, 56, 0.05);
+  color: #df2e38;
+}
+
+.formControlError::-webkit-input-placeholder {
+  color: #df2e38;
+}
+
+.formControlError::-moz-placeholder {
+  color: #df2e38;
+}
+
+.formControlError:-ms-input-placeholder {
+  color: #df2e38;
+}
+
+.formControlError::-ms-input-placeholder {
+  color: #df2e38;
+}
+
+.formControlError::placeholder {
+  color: #df2e38;
+}
+
+.formControl:-moz-read-only {
+  background-color: hsl(154, 80%, 16%);
+  border: 1px solid var(--color-accent-dark);
+  color: #ffffff;
+}
+
+.formControl:read-only {
+  background-color: hsl(154, 80%, 16%);
+  border: 1px solid var(--color-accent-dark);
+  color: #ffffff;
+}
+
+.formControl:read-only::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:-moz-read-only::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:read-only::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:read-only:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:read-only::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:read-only::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:-moz-read-only::placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.formControl:read-only::placeholder {
+  color: rgba(255, 255, 255, 0.625);
+  font-weight: 400;
+}
+
+.controlErrorMsg {
+  margin-top: 0.2rem;
+  min-height: 1.25rem;
+  color: #df2e38;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}

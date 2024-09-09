@@ -1,0 +1,102 @@
+.appFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem var(--padding-app-px);
+  height: 4rem;
+}
+
+.twitter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.branding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brandLink {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.brandImg {
+  height: 1.5rem;
+  width: auto;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.brandImg.logoOnly {
+  display: none;
+}
+
+@media screen and (max-width: 32em) {
+  .twitter {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .branding {
+    font-size: 0.95rem;
+  }
+
+  .brandImg {
+    height: 1.35rem;
+  }
+}
+
+@media screen and (max-width: 26em) {
+  .appFooter {
+    gap: 1rem;
+  }
+
+  .twitter {
+    height: 1.35rem;
+    width: 1.35rem;
+  }
+
+  .branding {
+    font-size: 0.9rem;
+  }
+
+  .brandImg {
+    height: 1.75rem;
+  }
+
+  .brandImg.logoOnly {
+    display: inline-block;
+  }
+
+  .brandImg.withText {
+    display: none;
+  }
+}

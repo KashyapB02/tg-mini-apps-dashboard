@@ -1,0 +1,67 @@
+.homepageMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: var(--padding-section-py) var(--padding-app-px);
+  height: calc(100vh - 8rem);
+  min-height: calc(100dvh - 8rem);
+}
+
+.homepageTitle {
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.descriptionText {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 90ch;
+}
+
+.accentText {
+  color: var(--color-accent);
+}
+
+.deployIcon {
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 32em) {
+  .homepageTitle {
+    font-size: 2rem;
+  }
+
+  .descriptionText {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 26em) {
+  .homepageTitle {
+    font-size: 1.75rem;
+  }
+
+  .descriptionText {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 23em) {
+  .descriptionText {
+    font-size: 0.9rem;
+  }
+}

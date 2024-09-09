@@ -1,0 +1,208 @@
+.deployPageMain {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: var(--padding-section-py) var(--padding-app-px);
+  height: calc(100vh - 8rem);
+  min-height: calc(100dvh - 8rem);
+}
+
+.deployPageTitle {
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.deployForm {
+  width: 100%;
+  max-width: 36rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: -o-linear-gradient(357deg, rgba(217, 217, 217, 0.07) 32.09%, rgba(217, 217, 217, 0.05) 116.98%);
+  background: linear-gradient(93deg, rgba(217, 217, 217, 0.07) 32.09%, rgba(217, 217, 217, 0.05) 116.98%);
+  -webkit-backdrop-filter: blur(110px);
+  backdrop-filter: blur(110px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 2rem;
+}
+
+.deployBtn {
+  margin-top: 1.75rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: auto;
+}
+
+.deployIcon {
+  font-size: 1.25rem;
+}
+
+.deploySuccessSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.deploySuccessGIF {
+  height: 9rem;
+  width: 9rem;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.deploySuccessMsg {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.deployURLContainer {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: -o-linear-gradient(357deg, rgba(217, 217, 217, 0.07) 32.09%, rgba(217, 217, 217, 0.05) 116.98%);
+  background: linear-gradient(93deg, rgba(217, 217, 217, 0.07) 32.09%, rgba(217, 217, 217, 0.05) 116.98%);
+  -webkit-backdrop-filter: blur(110px);
+  backdrop-filter: blur(110px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.deployURLMsg {
+  font-size: 0.9375rem;
+  letter-spacing: 0.02em;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.contentDivider {
+  height: 100%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.deployURL {
+  font-weight: 500;
+  color: var(--color-accent) !important;
+  word-break: break-all;
+}
+
+.deployURL:hover {
+  text-decoration: underline;
+}
+
+.urlCopyBtn {
+  font-size: 1.125rem;
+  width: 1.125rem;
+  height: 1.5rem;
+}
+
+.deployResetBtn {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  padding-bottom: 1px;
+  border-bottom: 1px solid currentColor;
+  color: rgba(255, 255, 255, 0.8);
+  -webkit-transition: color 0.1s ease;
+  -o-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+
+.deployResetBtn:hover {
+  color: var(--color-accent-dark);
+  -webkit-transition: color 0.1s ease;
+  -o-transition: color 0.1s ease;
+  transition: color 0.1s ease;
+}
+
+@media screen and (max-width: 48em) {
+  .deploySuccessGIF {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .deploySuccessMsg {
+    font-size: 1.175rem;
+    text-wrap: balance;
+  }
+
+  .deployURLMsg {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 32em) {
+  .deployPageTitle {
+    font-size: 1.75rem;
+  }
+
+  .deployForm {
+    padding: 1rem;
+  }
+
+  .deploySuccessGIF {
+    height: 6.5rem;
+    width: 6.5rem;
+  }
+
+  .deploySuccessMsg {
+    font-size: 1.1rem;
+  }
+
+  .deployResetBtn {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 26em) {
+  .deployPageTitle {
+    font-size: 1.5rem;
+  }
+
+  .deploySuccessGIF {
+    height: 6rem;
+    width: 6rem;
+  }
+}

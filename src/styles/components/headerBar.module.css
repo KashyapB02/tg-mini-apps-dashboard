@@ -1,0 +1,92 @@
+.appHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.75rem var(--padding-app-px);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  height: 4rem;
+}
+
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.logoImg {
+  height: 2rem;
+  width: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.logoImg.logoOnly {
+  display: none;
+}
+
+.googleIcon {
+  font-size: 1.5rem;
+}
+
+.userAvatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatarImg {
+  height: 2.25rem;
+  width: 2.25rem;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.logoutBtn {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  gap: 0.35rem !important;
+  padding: 0.35rem 0.5rem !important;
+}
+
+.logoutIcon {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 32em) {
+  .logoImg {
+    height: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 26em) {
+  .logoImg {
+    height: 2.5rem;
+  }
+
+  .logoImg.logoOnly {
+    display: inline-block;
+  }
+
+  .logoImg.withText {
+    display: none;
+  }
+}
