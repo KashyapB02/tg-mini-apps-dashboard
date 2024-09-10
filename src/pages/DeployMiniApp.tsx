@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import DeployMiniAppStyles from "@/styles/pages/deployMiniApp.module.css";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "@/hooks";
 import toast from "react-hot-toast";
 import { DeployInputForm } from "@/types";
 import { deployGame, getBotUsername, validateAccessTokenInput, validateWebURLInput } from "@/utils";
 import { IoCheckmarkDone, IoRocketSharp } from "react-icons/io5";
 import { MdOutlineContentCopy } from "react-icons/md";
 import { AccentButton, FormInput } from "@/components/ui";
+import { useLyncAuthProvider } from "@lyncworld/movement-social-login-sdk";
 import { LoadingSpinner } from "@/components/common";
 
 export const DeployMiniApp: React.FunctionComponent = (): JSX.Element => {
   const navigate = useNavigate();
-  const { contextLoading, user } = useAuthContext();
+  const { isSigningIn, user } = useLyncAuthProvider();
 
   const [deployingMiniApp, setDeployingMiniApp] = useState<boolean>(false);
   const [accessTokenError, setAccessTokenError] = useState<string>("");
@@ -81,15 +81,15 @@ export const DeployMiniApp: React.FunctionComponent = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (contextLoading) return;
+    if (isSigningIn) return;
 
     if (!user) {
       toast.error("Please sign in to deploy your mini app.");
       navigate("/");
     }
-  }, [contextLoading, user, navigate]);
+  }, [isSigningIn, user, navigate]);
 
-  if (contextLoading || !user)
+  if (isSigningIn || !user)
     return (
       <main className={DeployMiniAppStyles.deployPageMain}>
         <LoadingSpinner />
@@ -131,7 +131,7 @@ export const DeployMiniApp: React.FunctionComponent = (): JSX.Element => {
             onInput={(event) => validateAccessTokenInput((event.target as HTMLInputElement).value, setAccessTokenError)}
             placeholder="Eg. - 7532291386:AAE1h4w6kRPJV_wUkuVlkd5XEC1aNobdx548"
             required
-            readOnly={contextLoading || deployingMiniApp}
+            readOnly={isSigningIn || !user || deployingMiniApp}
             controlError={accessTokenError}
           />
           <FormInput
@@ -142,7 +142,7 @@ export const DeployMiniApp: React.FunctionComponent = (): JSX.Element => {
             onInput={(event) => validateWebURLInput((event.target as HTMLInputElement).value, setWebURLError)}
             placeholder="Eg. - https://lync.world/"
             required
-            readOnly={contextLoading || deployingMiniApp}
+            readOnly={isSigningIn || !user || deployingMiniApp}
             controlError={webURLError}
           />
           <FormInput
@@ -151,7 +151,7 @@ export const DeployMiniApp: React.FunctionComponent = (): JSX.Element => {
             name="menuText"
             type="text"
             placeholder="Eg. - PLAY"
-            readOnly={contextLoading || deployingMiniApp}
+            readOnly={isSigningIn || !user || deployingMiniApp}
           />
           <AccentButton
             disabled={deployingMiniApp}

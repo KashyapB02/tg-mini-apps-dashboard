@@ -1,1 +1,1 @@
-export * from "./useAuthContext.hook";
+export * from "./useOutsideClick";

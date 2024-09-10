@@ -1,15 +1,6 @@
-import { FirebaseError } from "@firebase/util";
 import { AxiosError } from "axios";
-import { firebaseAuthErrors } from "./firebaseAuthErrors.util";
 
 export const parseError = (err: unknown): string => {
-  if (err instanceof FirebaseError) {
-    const errorCode = err.code.split("/")[1];
-    const message = firebaseAuthErrors[errorCode];
-
-    return message;
-  }
-
   if (err instanceof AxiosError) {
     if (err.response) return err.response.data.message;
     if (err.request) return "Something went wrong!";

@@ -3,15 +3,16 @@ import HomePageStyles from "@/styles/pages/homepage.module.css";
 import { AccentButton } from "@/components/ui";
 import { IoRocketSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "@/hooks";
 import toast from "react-hot-toast";
+import { useLyncAuthProvider } from "@lyncworld/movement-social-login-sdk";
+import { LoadingSpinner } from "@/components/common";
 
 export const HomePage: React.FunctionComponent = (): JSX.Element => {
   const navigate = useNavigate();
-  const { contextLoading, user } = useAuthContext();
+  const { isSigningIn, user } = useLyncAuthProvider();
 
   const handleNavigate = () => {
-    if (contextLoading) return;
+    if (isSigningIn) return;
 
     if (!user) {
       toast.error("Please sign in to deploy your mini app.");
@@ -23,6 +24,7 @@ export const HomePage: React.FunctionComponent = (): JSX.Element => {
 
   return (
     <main className={HomePageStyles.homepageMain}>
+      {isSigningIn && <LoadingSpinner />}
       <h1 className={HomePageStyles.homepageTitle}>
         Deploy <span className={HomePageStyles.accentText}>Telegram Mini Apps</span> Effortlessly
       </h1>

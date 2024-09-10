@@ -1,31 +1,54 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import HeaderBarStyles from "@/styles/components/headerBar.module.css";
-import { AiFillGoogleCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import { AccentButton } from "../ui";
-import { signInWithGoogle, signOutFromGoogle } from "@/services";
+import { MdOutlineContentCopy } from "react-icons/md";
+import { IoCheckmarkDone } from "react-icons/io5";
 import toast from "react-hot-toast";
-import { useAuthContext } from "@/hooks";
-import { MdOutlineLogout } from "react-icons/md";
+import { useLyncAuthProvider } from "@lyncworld/movement-social-login-sdk";
+import { ProfileDropdown } from "./ProfileDropdown";
+import { useOutsideClick } from "@/hooks";
 
 export const HeaderBar: React.FunctionComponent = (): JSX.Element => {
-  const [signingIn, setSigningIn] = useState<boolean>(false);
-  const { contextLoading, user } = useAuthContext();
+  const [showProfileDropdown, setShowProfileDropdown] = useState<boolean>(false);
+  const [walletAddressCopied, setWalletAddressCopied] = useState<boolean>(false);
 
-  const handleSignInWithGoogle = async () => {
-    setSigningIn(true);
-    const signInResult = await signInWithGoogle();
+  const { isSigningIn, signInWithGoogle, user } = useLyncAuthProvider();
 
-    const toastMessage = signInResult.success ? toast.success : toast.error;
-    toastMessage(signInResult.message);
-    setSigningIn(false);
+  useMemo(() => {
+    if (!user) setShowProfileDropdown(false);
+  }, [user]);
+
+  const dropdownRef = useOutsideClick<HTMLButtonElement, void>(() => setShowProfileDropdown(false));
+
+  const collapseAddress = (address: string) => {
+    if (address.length <= 10) return address;
+    return `${address.slice(0, 6)} ... ${address.slice(-4)}`;
   };
 
-  const handleSingOutFromGoogle = async () => {
-    const signInResult = await signOutFromGoogle();
+  const copyWalletAddress = (value: string) => {
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        setWalletAddressCopied(true);
 
-    const toastMessage = signInResult.success ? toast.success : toast.error;
-    toastMessage(signInResult.message);
+        setTimeout(() => {
+          setWalletAddressCopied(false);
+        }, 2500);
+      })
+      .catch((err) => console.error("Error in copyToClipboard(): ", err));
+  };
+
+  const handleSignIn = async () => {
+    const response = await signInWithGoogle();
+
+    const toastFn = response.success ? toast.success : toast.error;
+    toastFn(response.message);
+
+    if (!response.success && response.error) {
+      console.error("Error in signing in: ", { error: response.error });
+    }
   };
 
   return (
@@ -38,39 +61,49 @@ export const HeaderBar: React.FunctionComponent = (): JSX.Element => {
         />
         <img src="/lync.webp" alt="Lync" className={`${HeaderBarStyles.logoImg} ${HeaderBarStyles.logoOnly}`} />
       </Link>
-      {!contextLoading && (
-        <React.Fragment>
-          {user && (
-            <div className={HeaderBarStyles.userAvatar}>
-              <img
-                src={user.providerData[0].photoURL ?? "/user-icon.webp"}
-                alt={user.providerData[0].displayName ?? "Avatar"}
-                className={HeaderBarStyles.avatarImg}
-                onError={(event) => {
-                  event.currentTarget.src = "/user-icon.webp";
-                }}
-              />
-              <AccentButton
-                icon={MdOutlineLogout}
-                iconStyleClassName={HeaderBarStyles.logoutIcon}
-                className={HeaderBarStyles.logoutBtn}
-                onClick={handleSingOutFromGoogle}
-              >
-                {null}
-              </AccentButton>
-            </div>
-          )}
-          {!user && (
-            <AccentButton
-              icon={AiFillGoogleCircle}
-              iconStyleClassName={HeaderBarStyles.googleIcon}
-              disabled={contextLoading || signingIn}
-              onClick={handleSignInWithGoogle}
-            >
-              Sign in with Google
-            </AccentButton>
-          )}
-        </React.Fragment>
+
+      {user && (
+        <div className={HeaderBarStyles.userAvatar}>
+          <AccentButton
+            icon={walletAddressCopied ? IoCheckmarkDone : MdOutlineContentCopy}
+            iconStyleClassName={HeaderBarStyles.copyIcon}
+            className={HeaderBarStyles.copyAddressBtn}
+            onClick={() => copyWalletAddress(user.walletAddress)}
+            disabled={isSigningIn}
+          >
+            {collapseAddress(user.walletAddress)}
+          </AccentButton>
+          <button
+            ref={dropdownRef}
+            onClick={() => setShowProfileDropdown((current) => !current)}
+            className={HeaderBarStyles.profileDropdownBtn}
+            disabled={isSigningIn}
+          >
+            <img
+              src={user.avatar}
+              alt={user.name}
+              className={HeaderBarStyles.avatarImg}
+              onError={(event) => {
+                event.currentTarget.src = "/user-icon.webp";
+              }}
+            />
+            {showProfileDropdown && (
+              <div className={HeaderBarStyles.profileDropdown}>
+                <ProfileDropdown />
+              </div>
+            )}
+          </button>
+        </div>
+      )}
+      {!user && (
+        <AccentButton
+          icon={AiFillGoogleCircle}
+          iconStyleClassName={HeaderBarStyles.googleIcon}
+          disabled={isSigningIn || user}
+          onClick={handleSignIn}
+        >
+          Sign in with Google
+        </AccentButton>
       )}
     </header>
   );

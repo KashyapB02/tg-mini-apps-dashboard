@@ -9,7 +9,6 @@
   -ms-flex-align: center;
   align-items: center;
   padding: 0.75rem var(--padding-app-px);
-  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 99;
@@ -58,17 +57,55 @@
   border-radius: 50%;
 }
 
-.logoutBtn {
+.copyAddressBtn {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
   -ms-flex-direction: row-reverse;
   flex-direction: row-reverse;
-  gap: 0.35rem !important;
-  padding: 0.35rem 0.5rem !important;
+  letter-spacing: 0.025em;
 }
 
-.logoutIcon {
-  font-size: 1.2rem;
+.copyIcon {
+  font-size: 1.125rem;
+}
+
+.profileDropdownBtn {
+  position: relative;
+}
+
+.profileDropdown {
+  position: absolute;
+  min-width: 13rem;
+  top: calc(100% + 0.5rem);
+  right: 0.75rem;
+  -webkit-animation: dropdownShow 0.4s ease;
+  animation: dropdownShow 0.4s ease;
+}
+
+@-webkit-keyframes dropdownShow {
+  from {
+    opacity: 0.2;
+    -webkit-transform: translateY(0.5rem);
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownShow {
+  from {
+    opacity: 0.2;
+    -webkit-transform: translateY(0.5rem);
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 32em) {

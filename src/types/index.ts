@@ -1,4 +1,3 @@
-import { User } from "firebase/auth";
 import React from "react";
 
 export * from "./components";
@@ -23,5 +22,3 @@ export type FunctionErrorReturn = {
 };
 
 export type FunctionReturn<TSuccessData = unknown> = FunctionSuccessReturn<TSuccessData> | FunctionErrorReturn;
-
-export type FirebaseUser = User;
